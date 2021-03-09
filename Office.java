@@ -6,8 +6,8 @@ public abstract class Office {
     private String OfficerId;
     private String branch;
 
+    public abstract String collate();
 
-    public abstract void collate();
     public abstract void announce();
 
     public String getOfficeId() {
