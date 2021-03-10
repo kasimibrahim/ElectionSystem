@@ -15,6 +15,7 @@ public class PollingStation extends Office {
 
             // 3. Execute SQL query
             ResultSet myRs = myStmt.executeQuery(
+
                     "SELECT SUM(NDC) AS 'TotalNDCVotes',SUM(NPP) AS 'TotalNPPVotes',SUM(GCPP) AS 'TotalGCPPVotes',SUM(PPP) AS 'TotalPPPVotes',SUM(PNC) AS 'TotalPNCVotes', (SUM(NDC) + SUM(NPP) + SUM(GCPP) + SUM(PPP) + SUM(PNC)) as 'TotalVotesCast' FROM pollingstation;");
 
             // 4. Process the result set
