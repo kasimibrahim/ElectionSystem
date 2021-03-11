@@ -1,4 +1,4 @@
-package voting_system;
+package GIT.ElectionSystem;
 
 import java.util.Calendar;
 
@@ -40,6 +40,7 @@ public class Voter extends  Person{
     }
 
     public void vote(){
+        
 
     }
 

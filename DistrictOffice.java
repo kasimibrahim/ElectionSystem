@@ -40,10 +40,10 @@ public class DistrictOffice extends Office {
                 // 4. Process the result set
                 myRs.next();
                 districtsTotalVotes.push(myRs.getInt("TotalNDCVotes"));
-                districtsTotalVotes.push(Integer.parseInt(myRs.getString("TotalNPPVotes")));
-                districtsTotalVotes.push(Integer.parseInt(myRs.getString("TotalGCPPVotes")));
-                districtsTotalVotes.push(Integer.parseInt(myRs.getString("TotalPPPVotes")));
-                districtsTotalVotes.push(Integer.parseInt(myRs.getString("TotalPNCVotes")));
+                districtsTotalVotes.push(myRs.getInt("TotalNPPVotes"));
+                districtsTotalVotes.push(myRs.getInt("TotalGCPPVotes"));
+                districtsTotalVotes.push(myRs.getInt("TotalPPPVotes"));
+                districtsTotalVotes.push(myRs.getInt("TotalPNCVotes"));
 
                 districtResult.put(everyDistrict, districtsTotalVotes.toString());
                 districtsTotalVotes.clear();

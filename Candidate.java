@@ -1,12 +1,11 @@
-package voting_system;
+package GIT.ElectionSystem;
 
-public class Candidate extends Person{
+public class Candidate extends Person {
     private String candidateID;
 
     public Candidate(String candidateID) {
         this.candidateID = candidateID;
     }
-
 
     public void eat() {
 
