@@ -4,20 +4,37 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * 
+ * THe Regional Office Class for Election System. This class is the Polling
+ * Station Class which uses a database called voters to read the number of votes
+ * for every candidate in each Region.
+ * <p>
+ */
+
 public class RegionalOffice extends Office {
+    // This is a hash map with candidate's party as a key and respective vote count
+    // as value.
+    static HashMap<String, String> RegionResult = new HashMap<String, String>();
 
-    public RegionalOffice() {
-        super();
-    }
+    // This is a linked list with contains the total votes of each party from each
+    // regional office.
+    static LinkedList<Integer> RegionsTotalVotes = new LinkedList<Integer>();
 
+    /**
+     * This method collates the votes of every candidate through the use of the JDBC
+     * and a voters database of generated votes.
+     * 
+     * @param None
+     * @return Nothing
+     * @exception SQL Exception
+     */
     @Override
-    public String collate() {
-        HashMap<String, String> RegionResult = new HashMap<String, String>();
-
-        LinkedList<Integer> RegionsTotalVotes = new LinkedList<Integer>();
-
+    public void collate() {
+        // Array of Regions
         String[] Regions = { "GREATER ACCRA", "WESTERN", "CENTRAL", "VOLTA", "EASTERN", "ASHANTI", "BRONG AHAFO",
-                "NORTHERN", "UPPER WEST", "UPPER EAST" };
+                "NORTHERN", "UPPER WEST", "UPPER EAST", "CENTRAL", "TEMA-WEST", "BRONG AHAFO",
+                "AHAFO ANO SOUTH EAST", };
 
         try {
             // 1. Get a connection to database
@@ -31,8 +48,8 @@ public class RegionalOffice extends Office {
                         + "    SUM(NPP) AS 'TotalNPPVotes',\n" + "    \n" + "    SUM(GCPP) AS 'TotalGCPPVotes',\n"
                         + "    \n" + "    SUM(PPP) AS 'TotalPPPVotes',\n" + "    \n"
                         + "    SUM(PNC) AS 'TotalPNCVotes',\n" + "    \n"
-                        + "    (SUM(NDC) + SUM(NPP) + SUM(GCPP) + SUM(PPP) + SUM(PNC)) as 'Total Votes Cast'\n"
-                        + "FROM\n" + "    pollingstation\n" + "WHERE Region = \"" + everyRegion + "\";");
+                        + "    (SUM(NDC) + SUM(NPP) + SUM(GCPP) + SUM(PPP) + SUM(PNC)) as 'TotalVotesCast'\n" + "FROM\n"
+                        + "    pollingstation\n" + "WHERE Region = \"" + everyRegion + "\";");
 
                 // 4. Process the result set
                 myRs.next();
@@ -52,12 +69,20 @@ public class RegionalOffice extends Office {
             e.printStackTrace();
 
         }
-        return RegionResult.toString();
 
     }
 
+    /**
+     * This method announces the results of the collaiton at the Regional Level.
+     * 
+     * @param None
+     * @return String This returns the results of the collaiton at the Regional
+     *         Office.
+     * 
+     */
     @Override
-    public void announce() {
+    public String announce() {
+        return RegionResult.toString();
 
     }
 }
